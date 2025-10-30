@@ -11,7 +11,7 @@ const Note = () => {
     try {
       const res = await fetch("http://localhost:7777/notes", {
         method: "GET",
-        credentials: "include", 
+        credentials: "include",
       });
       const data = await res.json();
       setNotes(data);
@@ -20,7 +20,6 @@ const Note = () => {
     }
   };
 
- 
   const handleAddNote = async (e) => {
     e.preventDefault();
     if (!title || !content) return alert("Both fields required");
@@ -62,7 +61,6 @@ const Note = () => {
     }
   };
 
-
   const startEditing = (note) => {
     setEditingNote(note);
     setTitle(note.title);
@@ -75,12 +73,15 @@ const Note = () => {
     if (!editingNote) return;
 
     try {
-      const res = await fetch(`http://localhost:7777/notes/${editingNote._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ title, content }),
-      });
+      const res = await fetch(
+        `http://localhost:7777/notes/${editingNote._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ title, content }),
+        }
+      );
 
       const updatedNote = await res.json();
       if (res.ok) {

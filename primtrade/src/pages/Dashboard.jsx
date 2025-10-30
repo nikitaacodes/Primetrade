@@ -27,7 +27,10 @@ const Dashboard = () => {
         <div className="w-1/3 bg-gray-700 rounded-xl p-4 flex flex-col items-center">
           {profile ? (
             <>
-              <img alt="avatar" className="w-20 h-20 border rounded-full mb-3" />
+              <img
+                alt="avatar"
+                className="w-20 h-20 border rounded-full mb-3"
+              />
               <h2 className="text-xl font-semibold">{profile.name}</h2>
               <p className="text-gray-300">@{profile.userName}</p>
               <p className="text-sm text-gray-400 mt-2">{profile.emailId}</p>
