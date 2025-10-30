@@ -6,12 +6,12 @@ require("dotenv").config();
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend URL
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -33,7 +33,7 @@ app.get("/me", userAuth, (req, res) => {
 // Database Connection
 connectDB()
   .then(() => {
-    console.log("✅ MongoDB Connected");
-    app.listen(7777, () => console.log("🚀 Server running on port 7777"));
+    console.log(" Database Connected");
+    app.listen(7777, () => console.log("Server running on port 7777"));
   })
-  .catch((err) => console.error("❌ DB Connection Failed:", err.message));
+  .catch((err) => console.error(" DB Connection Failed:", err.message));

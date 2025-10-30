@@ -9,9 +9,9 @@ const Note = () => {
   // Fetch all notes
   const fetchNotes = async () => {
     try {
-      const res = await fetch("http://localhost:7777/note", {
+      const res = await fetch("http://localhost:7777/notes", {
         method: "GET",
-        credentials: "include", // ✅ to send cookies (JWT)
+        credentials: "include", 
       });
       const data = await res.json();
       setNotes(data);
@@ -20,13 +20,13 @@ const Note = () => {
     }
   };
 
-  // Create a new note
+ 
   const handleAddNote = async (e) => {
     e.preventDefault();
     if (!title || !content) return alert("Both fields required");
 
     try {
-      const res = await fetch("http://localhost:7777/note", {
+      const res = await fetch("http://localhost:7777/notes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -49,7 +49,7 @@ const Note = () => {
   // Delete a note
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:7777/note/${id}`, {
+      const res = await fetch(`http://localhost:7777/notes/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -62,20 +62,20 @@ const Note = () => {
     }
   };
 
-  // Start editing
+
   const startEditing = (note) => {
     setEditingNote(note);
     setTitle(note.title);
     setContent(note.content);
   };
 
-  // Update note
+  // Update
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!editingNote) return;
 
     try {
-      const res = await fetch(`http://localhost:7777/note/${editingNote._id}`, {
+      const res = await fetch(`http://localhost:7777/notes/${editingNote._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -103,7 +103,7 @@ const Note = () => {
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-gray-400  rounded-[10px]">
+    <div className="max-w-2xl mx-auto mt-10 p-6 bg-gray-700  rounded-[10px]">
       <h2 className="font-semibold mb-4 text-center">Take Notes here</h2>
 
       {/* Add / Edit Form */}

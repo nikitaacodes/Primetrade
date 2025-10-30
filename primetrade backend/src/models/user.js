@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
 // hashing before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  console.log("Hashing password for:", this.emailId); // 👈 add this line
+  console.log("Hashing password for:", this.emailId);
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
@@ -37,7 +37,7 @@ userSchema.methods.comparePassword = async function (plainPassword) {
   return await bcrypt.compare(plainPassword, this.password);
 };
 
-// Generating JWT token
+// JWT token
 userSchema.methods.getJWT = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "2d",

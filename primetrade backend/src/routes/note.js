@@ -3,7 +3,7 @@ const Note = require("../models/note");
 const { userAuth } = require("../middleware/auth");
 const noteRouter = express.Router();
 
-// CREATE
+// create note
 noteRouter.post("/", userAuth, async (req, res) => {
   try {
     const note = new Note({ ...req.body, userId: req.user._id });
@@ -14,7 +14,7 @@ noteRouter.post("/", userAuth, async (req, res) => {
   }
 });
 
-// READ (get all notes for logged-in user)
+// get all
 noteRouter.get("/", userAuth, async (req, res) => {
   try {
     const notes = await Note.find({ userId: req.user._id }).sort({ createdAt: -1 });
@@ -24,7 +24,7 @@ noteRouter.get("/", userAuth, async (req, res) => {
   }
 });
 
-// UPDATE
+// update
 noteRouter.put("/:id", userAuth, async (req, res) => {
   try {
     const note = await Note.findOneAndUpdate(
@@ -39,7 +39,7 @@ noteRouter.put("/:id", userAuth, async (req, res) => {
   }
 });
 
-// DELETE
+// delete
 noteRouter.delete("/:id", userAuth, async (req, res) => {
   try {
     const note = await Note.findOneAndDelete({

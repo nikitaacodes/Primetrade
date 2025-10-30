@@ -1,5 +1,16 @@
-primetrade backend/node_modules
+# Node
+**/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-primetrade backend/.env
+# Env files
+*.env
 
-primtrade/node_modules
+# Build files
+dist/
+build/
+
+# IDE stuff
+.vscode/
+.DS_Store
