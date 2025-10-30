@@ -14,7 +14,7 @@ const Login = ({ onSwitch }) => {
         body: JSON.stringify({ emailId, password }),
       });
       if (res.ok) {
-        window.location.reload(); // Refresh app → App detects profile and shows Dashboard
+        window.location.reload(); 
       } else {
         const err = await res.json();
         alert(err.message || "Login failed");
@@ -44,7 +44,10 @@ const Login = ({ onSwitch }) => {
           className="w-full mb-3 p-2 rounded bg-gray-700"
           required
         />
-        <button type="submit" className="bg-blue-500 w-full py-2 rounded hover:bg-blue-600">
+        <button
+          type="submit"
+          className="bg-blue-500 w-full py-2 rounded hover:bg-blue-600"
+        >
           Login
         </button>
       </form>
